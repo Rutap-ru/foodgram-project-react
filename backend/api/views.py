@@ -82,13 +82,14 @@ class RecipeViewSet(viewsets.ModelViewSet):
                                            'filename="shopping_list.pdf"')
         page = canvas.Canvas(response)
         pdfmetrics.registerFont(
-            TTFont('FreeSans', 'static/fonts/FreeSans.ttf')
+            TTFont('FreeSans', 'static/fonts/FreeSans.ttf', 'UTF-8')
         )
-        page.setFont('FreeSans', 32)
-        page.drawString(200, 900, 'Список ингредиентов')
+        page.setFont('FreeSans', 22)
+        page.drawString(200, 800, 'Список ингредиентов')
+        page.setFont('FreeSans', 16)
         height = 750
         for i, (name, data) in enumerate(final_list.items(), 1):
-            page.drawString(75, height, (f'<{i}> {name} - {data["amount"]}, '
+            page.drawString(75, height, (f'{i}. {name} - {data["amount"]} '
                                          f'{data["measurement_unit"]}'))
             height -= 25
         page.showPage()
