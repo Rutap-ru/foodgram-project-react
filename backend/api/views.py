@@ -82,7 +82,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
                                            'filename="shopping_list.pdf"')
         page = canvas.Canvas(response)
         pdfmetrics.registerFont(
-            TTFont('FreeSans', 'static/fonts/FreeSans.ttf')
+            TTFont('FreeSans', 'data/fonts/FreeSans.ttf')
         )
         page.setFont('FreeSans', 32)
         page.drawString(200, 800, 'Список ингредиентов')
