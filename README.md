@@ -33,21 +33,21 @@ docker-compose up -d --build
 ```
 - Сделать миграции
 ```bash
-docker-compose exec backend python manage.py makemigrations
+sudo docker-compose exec backend python manage.py makemigrations
 
-docker-compose exec backend python manage.py migrate --noinput
+sudo docker-compose exec backend python manage.py migrate --noinput
 ```
 - Создание суперпользователя
 ```bash
-docker-compose exec backend python manage.py createsuperuser
+sudo docker-compose exec backend python manage.py createsuperuser
 ```
 - Подготовка статики проекта
 ```bash
-docker-compose exec backend python manage.py collectstatic --no-input
+sudo docker-compose exec backend python manage.py collectstatic --no-input
 ```
 - Загрузка подготовленненных данных (ингредиенты)
 ```bash
-docker-compose exec backend python manage.py loaddata data/ingredients.json
+sudo docker-compose exec backend python manage.py loaddata data/ingredients.json
 ```
 ### Авторы
 Николай, студентк факультета Бэкэнд Яндекс.Практикум
