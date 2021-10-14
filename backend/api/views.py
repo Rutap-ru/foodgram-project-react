@@ -85,7 +85,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
             TTFont('FreeSans', 'data/fonts/FreeSans.ttf')
         )
         page.setFont('FreeSans', 32)
-        page.drawString(200, 800, 'Список ингредиентов')
+        page.drawString(200, 900, 'Список ингредиентов')
         height = 750
         for i, (name, data) in enumerate(final_list.items(), 1):
             page.drawString(75, height, (f'<{i}> {name} - {data["amount"]}, '
