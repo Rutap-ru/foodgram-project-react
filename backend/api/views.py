@@ -81,7 +81,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
         response['Content-Disposition'] = ('attachment; '
                                            'filename="shopping_list.pdf"')
         page = canvas.Canvas(response)
-        pdfmetrics.registerFont(TTFont('FreeSans', '../data/FreeSans.ttf'))
+        pdfmetrics.registerFont(TTFont('FreeSans', '/data/FreeSans.ttf'))
         page.setFont('FreeSans', 32)
         page.drawString(200, 800, 'Список ингредиентов')
         height = 750
