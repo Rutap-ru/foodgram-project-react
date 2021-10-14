@@ -1,6 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from reportlab.pdfgen import canvas
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
 from rest_framework import status, viewsets
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
@@ -79,6 +81,8 @@ class RecipeViewSet(viewsets.ModelViewSet):
         response['Content-Disposition'] = ('attachment; '
                                            'filename="shopping_list.pdf"')
         page = canvas.Canvas(response)
+        pdfmetrics.registerFont(TTFont('FreeSans', '../data/FreeSans.ttf'))
+        page.setFont('FreeSans', 32)
         page.drawString(200, 800, 'Список ингредиентов')
         height = 750
         for i, (name, data) in enumerate(final_list.items(), 1):
