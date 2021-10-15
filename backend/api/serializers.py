@@ -69,7 +69,15 @@ class RecipeSerializer(serializers.ModelSerializer):
         return Recipe.objects.filter(cart__user=user, id=obj.id).exists()
 
     def validate(self, data):
+        tags = self.initial_data.get('tags')
+        cooking_time = self.initial_data.get('cooking_time')
         ingredients = self.initial_data.get('ingredients')
+        if not tags:
+            raise serializers.ValidationError({
+                'tags': 'Нужен хоть один тег для рецепта'})
+        if not cooking_time:
+            raise serializers.ValidationError({
+                'cooking_time': 'Необходимо указать время приготовления'})
         if not ingredients:
             raise serializers.ValidationError({
                 'ingredients': 'Нужен хоть один ингридиент для рецепта'})
