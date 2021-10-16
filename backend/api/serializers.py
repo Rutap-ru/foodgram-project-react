@@ -75,9 +75,21 @@ class RecipeSerializer(serializers.ModelSerializer):
         if not tags:
             raise serializers.ValidationError({
                 'tags': 'Нужен хоть один тег для рецепта'})
+        tag_list = []
+        for tag_item in tags:
+            tag = get_object_or_404(Tag,id=tag_item['id'])
+            if tag in tag_list:
+                raise serializers.ValidationError('Теги должны '
+                                                  'быть уникальными')
+            tag_list.append(tag)
         if not cooking_time:
             raise serializers.ValidationError({
                 'cooking_time': 'Необходимо указать время приготовления'})
+        if int(cooking_time) < 1:
+            raise serializers.ValidationError({
+                'cooking_time': ('Время приготовления '
+                                 'должно быть больше 0 мин.')
+            })
         if not ingredients:
             raise serializers.ValidationError({
                 'ingredients': 'Нужен хоть один ингридиент для рецепта'})
