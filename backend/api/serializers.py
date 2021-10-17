@@ -77,7 +77,7 @@ class RecipeSerializer(serializers.ModelSerializer):
                 'tags': 'Нужен хоть один тег для рецепта'})
         tag_list = []
         for tag_item in tags:
-            tag = get_object_or_404(Tag,id=tag_item['id'])
+            tag = get_object_or_404(Tag, id=tag_item['id'])
             if tag in tag_list:
                 raise serializers.ValidationError('Теги должны '
                                                   'быть уникальными')
